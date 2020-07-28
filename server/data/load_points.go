@@ -6,14 +6,14 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/MarkRosemaker/go-cartesian/point"
+	"github.com/MarkRosemaker/go-cartesian/points"
 )
 
 // the file we are importing from
 const pointsFile string = `data/points.json`
 
 // LoadPoints reads a list of points from a (pre-defined) file and returns it.
-func loadPoints() (point.Points, error) {
+func loadPoints() (points.Points, error) {
 
 	// read the json file into bytes
 	b, err := ioutil.ReadFile(pointsFile)
@@ -25,7 +25,7 @@ func loadPoints() (point.Points, error) {
 	}
 
 	// initialize points
-	var pts point.Points
+	var pts points.Points
 
 	// unmarshal json
 	if err = json.Unmarshal(b, &pts); err != nil {

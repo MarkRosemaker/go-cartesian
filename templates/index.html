@@ -1,1 +1,32 @@
-hello world
+<!DOCTYPE html>
+<html lang="de">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>API</title>
+		<style>
+			.error {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		{{ with .SearchOriginPoint }}
+			<p>You chose the point: {{ . }}</p>
+		{{ end }}
+
+		{{ with .SearchRadius }}
+			<p>You chose the distance: {{ . }}</p>
+		{{ end }}
+
+		{{ with .NeighborsWithDistance }}
+			<ol>
+			{{ range . }}
+				<li>{{ .Point }} with distance {{ .Distance }}</li>
+			{{ end }}
+			</ol>
+		{{ else }}
+			<p class="error">Insufficient or malformed parameters or no points found.</p>
+		{{ end }}
+	</body>
+</html>

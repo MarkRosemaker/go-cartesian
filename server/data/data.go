@@ -3,7 +3,7 @@ package serverdata
 import (
 	"fmt"
 
-	"github.com/MarkRosemaker/go-cartesian/point"
+	"github.com/MarkRosemaker/go-cartesian/points"
 )
 
 // data is our singleton data object
@@ -16,7 +16,7 @@ func Get() *Data {
 
 // Data represents data that lies on the server.
 type Data struct {
-	AllPoints point.Points
+	AllPoints points.Points
 }
 
 // Load loads the server data to a singleton object.

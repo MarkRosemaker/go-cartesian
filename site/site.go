@@ -8,13 +8,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/MarkRosemaker/go-cartesian/site/page"
+	"github.com/MarkRosemaker/go-cartesian/site/content"
 )
 
 const tmplSource string = "templates"
 
-// InitPages initializes the pages from a folder of html templates.
-func InitPages() error {
+// InitContent initializes the content from a folder of templates and files.
+func InitContent() error {
 	// clean up template source
 	src := filepath.Clean(tmplSource)
 
@@ -46,21 +46,36 @@ func InitPages() error {
 			// trim prefix to treat the template folder as its own file system
 			url = strings.TrimPrefix(url, src)
 
-			if strings.HasSuffix(path, "index.html") {
-				// an .html file which we interpret as a template
+			// initialize the page or file
+			var h http.Handler
 
-				// remove suffix 'index.html'
-				url = strings.TrimSuffix(url, "index.html")
+			base := filepath.Base(path)
+			name := strings.TrimSuffix(base, filepath.Ext(base))
 
-				// create the page from the file path
-				p := page.New(path)
+			switch name {
+			case "index":
+				// remove base from url
+				url = strings.TrimSuffix(url, base)
 
-				// serve the page when called
-				http.HandleFunc(url, p.Serve)
-			} else {
-				// implement other behavior here to serve custom 404 pages, files, etc.
-				log.Printf("file %q not used", path)
+				// create page from template
+				h, err = content.NewPage(path)
+				if err != nil {
+					return err
+				}
+			case "404":
+				//  serve custom 404 page
+				log.Printf("custom 404 pages not implemented yet")
+			default:
+				// just serve as standard file
+				h, err = content.NewFile(path)
+				if err != nil {
+					return err
+				}
 			}
+
+			// serve the page when called
+			http.Handle(url, h)
+
 			return nil
 		})
 }

@@ -3,19 +3,29 @@
 package tpl
 
 import (
+	"fmt"
 	"html/template"
-	"log"
 )
 
-// GetTemplate clones the base template and adds a parsed template from the path.
-func GetTemplate(path string) *template.Template {
-	// clone the base template
-	t := template.Must(baseTemplate.Clone())
+// IsTemplate checks wheather the file is a temlpate or not.
+func IsTemplate(path string) bool {
+	// TODO
 
-	// parse the file
-	if _, err := t.ParseFiles(path); err != nil {
-		log.Fatalf("error parsing template at %q: %s", path, err)
+	return true
+}
+
+// GetTemplate clones the base template and adds a parsed template from the path.
+func GetTemplate(path string) (*template.Template, error) {
+	// clone the base template
+	t, err := baseTemplate.Clone()
+	if err != nil {
+		return nil, fmt.Errorf("error cloning base template: %s", err)
 	}
 
-	return t
+	// parse the file
+	if t, err = t.ParseFiles(path); err != nil {
+		return nil, fmt.Errorf("error parsing template at %q: %s", path, err)
+	}
+
+	return t, nil
 }
