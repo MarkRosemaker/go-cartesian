@@ -11,22 +11,7 @@
 		</style>
 	</head>
 	<body>
-		{{ with .SearchOriginPoint }}
-			<p>You chose the point: {{ . }}</p>
-		{{ end }}
-
-		{{ with .SearchRadius }}
-			<p>You chose the distance: {{ . }}</p>
-		{{ end }}
-
-		{{ with .NeighborsWithDistance }}
-			<ol>
-			{{ range . }}
-				<li>{{ .Point }} with distance {{ .Distance }}</li>
-			{{ end }}
-			</ol>
-		{{ else }}
-			<p class="error">Insufficient or malformed parameters or no points found.</p>
-		{{ end }}
+		<p>The api is available at <em>/api/points</em>.</p>
+		<!-- todo: form that accesses the API -->
 	</body>
 </html>

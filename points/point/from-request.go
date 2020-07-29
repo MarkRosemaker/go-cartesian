@@ -6,9 +6,10 @@ import (
 	"strconv"
 )
 
+// some error formats
 const (
 	notProvided = "%s value not provided"
-	notParsed   = "%s value %q could not be parsed to int"
+	notParsed   = "%s value '%s' could not be parsed to int"
 )
 
 // FromRequest returns a Point from the form values or an error, if a point couldn't be parsed.
@@ -20,10 +21,10 @@ func FromRequest(req *http.Request) (*Point, error) {
 		err        error
 	)
 
-	if xStr := req.FormValue("x"); xStr == "" {
+	if xStr = req.FormValue("x"); xStr == "" {
 		return nil, fmt.Errorf(notProvided, "x")
 	}
-	if yStr := req.FormValue("y"); yStr == "" {
+	if yStr = req.FormValue("y"); yStr == "" {
 		return nil, fmt.Errorf(notProvided, "y")
 	}
 	if x, err = strconv.Atoi(xStr); err != nil {

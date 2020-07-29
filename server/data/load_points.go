@@ -1,4 +1,4 @@
-package serverdata
+package data
 
 import (
 	"encoding/json"

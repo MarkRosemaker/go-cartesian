@@ -1,4 +1,4 @@
-package api
+package points
 
 import (
 	"context"
@@ -7,9 +7,10 @@ import (
 	"time"
 
 	"github.com/MarkRosemaker/go-cartesian/points/point"
+	"github.com/MarkRosemaker/go-server/server/api"
 )
 
-func points(w http.ResponseWriter, req *http.Request) {
+func HandlerFunc(w http.ResponseWriter, req *http.Request) {
 	// ctx is the Context for this handler. Calling cancel closes the
 	// ctx.Done channel, which is the cancellation signal for requests
 	// started by this handler.
@@ -30,18 +31,15 @@ func points(w http.ResponseWriter, req *http.Request) {
 	// Store the time in ctx for use by code in other packages.
 	// ctx = reqtime.NewContext(ctx, time.Now()) TODO
 
-	// serve with correct MIME type
-	w.Header().Set("Content-Type", "application/json")
-
 	p, err := point.FromRequest(req)
 	if err != nil {
-		http.Error(w,
-			fmt.Sprintf(`{"error":"%s"}`, err),
-			http.StatusBadRequest)
+		api.WriteJSON(w, api.NewErrorNow(
+			http.StatusBadRequest,
+			err.Error(),
+			""))
 		return
 	}
 
 	fmt.Println(ctx)
-	fmt.Println(p)
-
+	api.WriteJSON(w, p)
 }
