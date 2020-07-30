@@ -13,9 +13,10 @@ import (
 // the file we are importing from
 const pointsFile string = `data/points.json`
 
+// the points that we imported
 var pts points.Points
 
-// Init reads a list of points from a (pre-defined) file or returns an error.
+// Init reads a list of points from 'data/points.json' into memory.
 func Init(verbose bool) error {
 
 	// read the json file into bytes

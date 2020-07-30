@@ -25,7 +25,7 @@ func (pts Points) NeighborsWithDistance(origin point.Point, radius int) WithDist
 	for i := 0; i < k; i++ {
 		list[i] = point.WithDistance{
 			Point:    pts[i],
-			Distance: distance.Between(pts[i], origin),
+			Distance: distance.Manhattan(pts[i], origin),
 		}
 	}
 

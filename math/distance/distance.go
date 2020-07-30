@@ -1,11 +1,12 @@
+// Package distance offers (for now, only one) function to calculate the distance between two points.
 package distance
 
 import (
 	"github.com/MarkRosemaker/go-cartesian/math/point"
 )
 
-// Between calculates the Manhatten distance between two points.
-func Between(p1 point.Point, p2 point.Point) int {
+// Manhattan calculates the Manhatten distance between two points.
+func Manhattan(p1 point.Point, p2 point.Point) int {
 	return abs(p1.X-p2.X) + abs(p1.Y-p2.Y)
 }
 

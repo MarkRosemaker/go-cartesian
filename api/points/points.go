@@ -1,3 +1,4 @@
+// Package points defines the behavior of the /api/points API.
 package points
 
 import (
@@ -12,7 +13,12 @@ import (
 )
 
 // Respond responds to API requests to /api/points.
+//
 // The returning interface will be marshalled into a JSON.
+// If there is an error, an instance of type api.Error will get returned.
+//
+// In addition to the challenge requirements, this function will timeout
+// if it takes longer than a timeout that was given as a parameter.
 func Respond(req *http.Request) interface{} {
 	ctx, cancel := context.WithUserTimeout(req)
 	defer cancel()
