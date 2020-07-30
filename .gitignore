@@ -1,2 +1,3 @@
 # ignore files with keyword 'OLD'
 OLD*
+*.exe

@@ -2,6 +2,9 @@ package point
 
 import (
 	"fmt"
+	"net/http"
+
+	"github.com/MarkRosemaker/go-server/server/form"
 )
 
 // Point represents a point on a cartesian plane.
@@ -16,13 +19,15 @@ func (p Point) String() string {
 }
 
 func FromRequest(req *http.Request) (*Point, error) {
+
+	var err error
 	p := &Point{}
 
-	if p.X, err := form.GetIntE(req, "x"); err != nil {
+	if p.X, err = form.GetIntE(req, "x"); err != nil {
 		return nil, err
 	}
 
-	if p.Y, err := form.GetIntE(req, "y"); err != nil {
+	if p.Y, err = form.GetIntE(req, "y"); err != nil {
 		return nil, err
 	}
 
