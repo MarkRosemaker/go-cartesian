@@ -3,7 +3,7 @@ Cartesian API
 
 - [Cartesian API](#cartesian-api)
 	- [Usage](#usage)
-	- [Implementation](#implementation)
+	- [Coding Challenge Implementation](#coding-challenge-implementation)
 		- [Summary](#summary)
 		- [Sort and Cut vs. Collect and Sort](#sort-and-cut-vs-collect-and-sort)
 	- [Additions](#additions)
@@ -20,7 +20,7 @@ Compile and run in the repository folder.
 
 The API route is then available at http://localhost:8080/api/points.
 
-## Implementation
+## Coding Challenge Implementation
 
 ### Summary
 
@@ -31,7 +31,7 @@ The initialization is defined in [`go-cartesian/api/points/init.go`](https://git
 In [`go-cartesian/api/points/points.go`](https://github.com/MarkRosemaker/go-cartesian/blob/master/api/points/points.go), `func Respond(req *http.Request) interface{}` calculates the response to the request:
 
 - The form is parsed to get the origin point as a [`point.Point`](https://github.com/MarkRosemaker/go-cartesian/blob/master/math/point/point.go) and the radius (a.k.a. distance) as an `int`.
-- A slice of [`point.WithDistance`](https://github.com/MarkRosemaker/go-cartesian/blob/master/math/point/with-distance.go) (i.e. a [`points.WithDistance`](https://github.com/MarkRosemaker/go-cartesian/blob/master/math/points/with-distance.go)) is created, which holds both the points and their distance to the origin point.
+- A slice of [`point.WithDistance`](https://github.com/MarkRosemaker/go-cartesian/blob/master/math/point/with-distance.go) (i.e. a [`points.WithDistance`](https://github.com/MarkRosemaker/go-cartesian/blob/master/math/points/with-distance.go)) is created, which holds both the points and their distances to the origin point.
 - This slice is then sorted and points that are too far removed are filtered out. [See below](#sort-and-cut-vs-collect-and-sort) for two implementations.
 - The result is a list of just the points, which are extracted from the filtered and sorted `points.WithDistance` list.
 
@@ -46,7 +46,7 @@ I've [implemented two methods](https://github.com/MarkRosemaker/go-cartesian/blo
 - `sortCut` sorts the entire list and then cuts away all points that are not within the radius ("distance").
 - `collectSort` first collects all points that are within the radius ("distance") and then sorts the collection.
 
-Assuming we have a very, very large list of points instead of our 100 points, it would be beneficial to test which method is more efficient. The most efficient method may depend on the size of the list.
+Assuming we have a very, very large list of points instead of our 100 points, it would be beneficial to test which method is more efficient. In a real-world application, we might be able to work with some heuristics.
 
 ## Additions
 
