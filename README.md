@@ -50,6 +50,8 @@ Assuming we have a very, very large list of points instead of our 100 points, it
 
 ## Additions
 
+For various reasons, like my enjoyment of the project and a desire to learn, I've done a bit more than what was required.
+
 ### go-server
 
 Since my implementation of the server left the scope of the project and I wanted to continue programming it for myself, I decided to move this part of the code to a separate repository called [`go-server`](https://github.com/markrosemaker/go-server).
