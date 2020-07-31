@@ -1,12 +1,25 @@
 package points
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/MarkRosemaker/go-cartesian/math/distance"
 	"github.com/MarkRosemaker/go-cartesian/math/point"
 )
 
 // Points is an array of points.
 type Points []point.Point
+
+// String is defined for display and debugging purposes.
+func (pts Points) String() string {
+	k := len(pts)
+	strs := make([]string, k)
+	for i := 0; i < k; i++ {
+		strs[i] = pts[i].String()
+	}
+	return fmt.Sprintf("[%s]", strings.Join(strs, ","))
+}
 
 // Neighbors returns a slice of all points within radius of an origin point.
 // They are sorted in order of increasing distance.

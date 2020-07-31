@@ -1,4 +1,6 @@
-// Package distance offers (for now, only one) function to calculate the distance between two points.
+// Package distance offers functions to calculate the distance between two points.
+//
+// For now, there's only one function.
 package distance
 
 import (

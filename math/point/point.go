@@ -1,3 +1,4 @@
+// Package point defines behavior related to single point objects.
 package point
 
 import (
@@ -18,6 +19,7 @@ func (p Point) String() string {
 	return fmt.Sprintf("(%d,%d)", p.X, p.Y)
 }
 
+// FromRequest returns the radius (or distance) from the form value or an error, if 'radius' and 'distance' couldn't be parsed.
 func FromRequest(req *http.Request) (*Point, error) {
 
 	var err error
