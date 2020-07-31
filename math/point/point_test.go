@@ -13,6 +13,7 @@ func TestFromRequest(t *testing.T) {
 		{"", "x value not provided"},
 		{"?x=3", "y value not provided"},
 		{"?x=3&y=4", "(3,4)"},
+		{"?x=2&y=-5", "(2,-5)"},
 	}
 
 	for _, table := range tables {

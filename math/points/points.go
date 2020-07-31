@@ -1,3 +1,4 @@
+// Package points defines behavior for arrays of points and arrays of points with their distance to the origin point.
 package points
 
 import (
@@ -11,7 +12,7 @@ import (
 // Points is an array of points.
 type Points []point.Point
 
-// String is defined for display and debugging purposes.
+// String is defined for testing, display and debugging purposes.
 func (pts Points) String() string {
 	k := len(pts)
 	strs := make([]string, k)

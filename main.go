@@ -9,7 +9,7 @@ import (
 
 func main() {
 	o := server.Options{
-		ContentSource: "templates",
+		ContentSource: "site",
 		Endpoints: api.Endpoints{
 			api.BaseEndpoint{
 				URL:          "/api/points",

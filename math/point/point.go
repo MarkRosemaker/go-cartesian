@@ -14,12 +14,12 @@ type Point struct {
 	Y int `json:"y"`
 }
 
-// String is defined for display and debugging purposes.
+// String is defined for testing, display and debugging purposes.
 func (p Point) String() string {
 	return fmt.Sprintf("(%d,%d)", p.X, p.Y)
 }
 
-// FromRequest returns the radius (or distance) from the form value or an error, if 'radius' and 'distance' couldn't be parsed.
+// FromRequest returns a point by parsing the form values "x" and "y", or an error, if they couldn't be parsed.
 func FromRequest(req *http.Request) (*Point, error) {
 
 	var err error

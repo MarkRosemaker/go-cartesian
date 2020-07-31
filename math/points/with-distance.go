@@ -20,10 +20,12 @@ func (pwd WithDistance) Points() Points {
 	return o
 }
 
+// less is defined to sort this slice
 func (pwd WithDistance) less(i int, j int) bool {
 	return pwd[i].Distance < pwd[j].Distance
 }
 
+// sortCut sorts the entire list and then cuts away all points that are not within the radius ("distance").
 func (pwd WithDistance) sortCut(radius int) WithDistance {
 
 	// sort the list
@@ -40,6 +42,7 @@ func (pwd WithDistance) sortCut(radius int) WithDistance {
 	return pwd
 }
 
+// collectSort first collects all points that are within the radius ("distance") and then sorts the collection.
 func (pwd WithDistance) collectSort(radius int) WithDistance {
 
 	k := len(pwd)
