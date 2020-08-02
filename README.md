@@ -48,6 +48,8 @@ I've [implemented two methods](https://github.com/MarkRosemaker/go-cartesian/blo
 
 Assuming we have a very, very large list of points instead of our 100 points, it would be beneficial to test which method is more efficient. In a real-world application, we might be able to work with some heuristics.
 
+Note also that the use of context can be expanded to make an even more sophisticated program. If we are dealing with a very large list, we should be able to cancel the process after any substep if timout has occured.
+
 ## Additions
 
 For various reasons, like my enjoyment of the project and a desire to learn, I've done a bit more than what was required.
